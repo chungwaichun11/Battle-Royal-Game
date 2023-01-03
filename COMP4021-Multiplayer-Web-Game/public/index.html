@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Arcane Alpha</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/public-pixel" rel="stylesheet">
+    <link rel="shortcut icon" href="#">
+    <style>@import url('https://fonts.cdnfonts.com/css/public-pixel');</style>
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="game-canvas"></canvas>
+    </div>
+
+    <div id="modal-overlay">
+        <div id="modal-window">
+            <div id="info-panel">
+                <div class="info-content" id="info-content-page-1">
+                    <h1>Arcane Alpha</h1>
+                    <h2>
+                        Welcome back to the Trio Wizard Tournament, aspiring champions!<br/><br/>
+                        In the following task, you will be form groups of three, use the spells you know, and defeat your enemies.<br/><br/>
+                        The last group standing shall be crowned champion and enter the next round!<br/><br/>
+                    </h2>
+                </div>
+                <div class="info-content" id="info-content-page-2" hidden>
+                    <h1>Controls</h1>
+                    <h2>
+                        W/A/S/D: Move<br/><br/>
+                        E: Interact<br/><br/>
+                        LMB: Primary Spell<br/><br/>
+                        RMB: Secondary Spell<br/><br/>
+
+                    </h2>
+                </div>
+                <div class="info-content" id="info-content-page-3" hidden>
+                    <h1>SPELLS</h1>
+                    <h2>
+                        A non-charged wand will be given to each participant.<br/><br/>
+                        You will be unable to cast a spell with the wand until you have find the respective rune of the spell.<br/><br/>
+                    </h2>
+                </div>
+                <div class="info-content" id="info-content-page-4" hidden>
+                    <h1>SHROUD</h1>
+                    <h2>
+                        A magical shroud will close in soon after the match starts. Within minutes, the whole arena will be covered in deadly mist.<br/><br/>
+                        Outrun the shroud or perish in the dark!<br/><br/>
+                    </h2>
+                </div>
+                <div class="info-content" id="info-content-page-5" hidden>
+                    <h1>CHEAT MODE</h1>
+                    <h2>
+                        Extra powerful dark wizards in the past have been said to cheat with a forbidden technique by pressing the <span style="color: green">Delete</span> Button.<br/><br/>
+                        Please make sure not to accidentally press your <span style="color: green">Delete</span> Button during the match or you may accidentally cast the killing curse.<br/><br/>
+                    </h2>
+                </div>
+                <div id="info-page-changer">
+                    <button id="info-page-prev-btn" disabled="true">Prev</button>
+                    <div id="info-page-current">1</div>
+                    <button id="info-page-next-btn">Next</button>
+                </div>
+            </div>
+            <div id="selection-panel">
+                <form id="signin-form">
+                    <div class="signin-tab-bar">
+                        <button class="signin-tab active" type="button" id="login-tab">Login</button>
+                        <button class="signin-tab"        type="button" id="signup-tab">Register</button>
+                    </div>
+                    <p class="title" id="username-title"> Username</p>
+                    <input class="signin-field" id="username-field"         placeholder="Username"></input>
+                    <p class="title" id="displayname-title" hidden> Display Name</p>
+                    <input class="signin-field" id="display-name-field"     placeholder="Display Name" hidden></input>
+                    <p class="title" id="password-title"> Password</p>
+                    <input class="signin-field" id="password-field"         placeholder="Password"         type="password"></input>
+                    <p class="title" id="confirm-password-title" hidden> Confirm password</p>
+                    <input class="signin-field" id="confirm-password-field" placeholder="Confirm password" type="password" hidden></input>
+                    <div id="signin-error"></div>
+                    <button class="signin-btn" type="button">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div id="scoreboard-window">
+            <div id="scoreboard-panel">
+                <div class="scoreboard-title">
+                    <h1>Scoreboard</h1>
+                    <p id="scoreboard-teamrank"></p>
+                </div>
+                <div class="scoreboard-table">
+                    <table class="scoreboard">
+                        <tr> <th>Rank</th> <th>Player</th> <th>Kill</th> <th>Damage</th> <th>level</th> <th>score</th> </tr>
+                    </table>
+                </div>
+                <button class="back-btn" type="button">Return to the lobby</button>
+            </div>
+        </div>
+        <button id="continue-btn">Continue</button>
+    </div>
+    
+    <script src="/socket.io/socket.io.min.js"></script>
+    
+    <script src="scripts/game/shroud.js"></script>
+    <script src="scripts/game/background.js"></script>
+    <script src="scripts/game/sprite.js"></script>
+
+    <script src="scripts/game/objects/camera.js"></script>
+    <script src="scripts/game/objects/entity.js"></script>
+    <script src="scripts/game/objects/interactable.js"></script>
+    <script src="scripts/game/objects/spell.js"></script>
+    <script src="scripts/game/objects/loot.js"></script>
+
+    <script src="scripts/game/ui/prompt.js"></script>
+    <script src="scripts/game/ui/spellslot.js"></script>
+    <script src="scripts/game/ui/gauges.js"></script>
+    <script src="scripts/game/ui/readybtn.js"></script>
+    <script src="scripts/game/ui/timer.js"></script>
+    <script src="scripts/game/ui/announcement.js"></script>
+
+    <script src="scripts/game/game.js"></script>
+    
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/socket.js"></script>
+    <script src="scripts/ui.js"></script>
+    <script>
+    $(document).ready(() => {
+        ModalWindow.initialize();
+        SignInForm.initialize();
+    });
+    </script>
+</body>
+</html>
